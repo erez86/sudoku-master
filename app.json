@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Sudoku Master",
+    "slug": "sudoku-master",
+    "owner": "erez86",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "description": "A challenging and fun Sudoku game for all skill levels",
+    "keywords": [
+      "sudoku",
+      "puzzle",
+      "game",
+      "brain training"
+    ],
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.erez86.sudokumaster",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.erez86.sudokumaster"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "84fb26d9-148e-4dc7-8bd3-1139a2c6c384"
+      }
+    },
+    "plugins": [
+      "expo-font",
+      "expo-router"
+    ]
+  }
+}
