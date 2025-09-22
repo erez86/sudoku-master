@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { router } from 'expo-router';
 import { TouchableOpacity } from "react-native";
 import { Icon } from "@/components/UI/Icon";
+import { ProfileProvider } from '../contexts/ProfileContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,50 +43,60 @@ export default function RootLayout() {
   );
 
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: '#3498db',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontFamily: 'Quicksand_600SemiBold',
-          fontSize: 18,
-        },
-        headerTitleAlign: 'center',
-      }}
-    >
-      <Stack.Screen
-        name="index"
-        options={{
-          title: 'Sudoku Master',
-          headerShown: false
+    <ProfileProvider>
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#3498db',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontFamily: 'Quicksand_600SemiBold',
+            fontSize: 18,
+          },
+          headerTitleAlign: 'center',
         }}
-      />
-      <Stack.Screen
-        name="game/index"
-        options={{
-          title: 'Game',
-          headerLeft: () => <CustomBackButton />,
-          headerBackVisible: false,
-        }}
-      />
-      <Stack.Screen
-        name="rules/index"
-        options={{
-          title: 'Rules & Tips',
-          headerLeft: () => <CustomBackButton />,
-          headerBackVisible: false,
-        }}
-      />
-      <Stack.Screen
-        name="settings/index"
-        options={{
-          title: 'Settings',
-          headerLeft: () => <CustomBackButton />,
-          headerBackVisible: false,
-        }}
-      />
-    </Stack>
+      >
+        <Stack.Screen
+          name="index"
+          options={{
+            title: 'Sudoku Master',
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="game/index"
+          options={{
+            title: 'Game',
+            headerLeft: () => <CustomBackButton />,
+            headerBackVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="rules/index"
+          options={{
+            title: 'Rules & Tips',
+            headerLeft: () => <CustomBackButton />,
+            headerBackVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="settings/index"
+          options={{
+            title: 'Settings',
+            headerLeft: () => <CustomBackButton />,
+            headerBackVisible: false,
+          }}
+        />
+        <Stack.Screen
+          name="profile/index"
+          options={{
+            title: 'Profile',
+            headerLeft: () => <CustomBackButton />,
+            headerBackVisible: false,
+          }}
+        />
+      </Stack>
+    </ProfileProvider>
   );
 }

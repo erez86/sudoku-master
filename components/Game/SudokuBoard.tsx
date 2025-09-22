@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, TextStyle } from 'react-native';
 import { Typography } from '@/components/UI/Typography';
 
 export type CellValue = number | null;
@@ -54,7 +54,8 @@ export const SudokuBoard: React.FC<SudokuBoardProps> = ({
   };
 
   const getCellStyle = (row: number, col: number) => {
-    const styles = [cellStyles.cell];
+    // Use type assertion to help TypeScript understand the array of styles
+    const styles: any[] = [cellStyles.cell];
 
     // Border styles for 3x3 boxes
     if (row % 3 === 0) styles.push(cellStyles.topBorder);
@@ -76,8 +77,8 @@ export const SudokuBoard: React.FC<SudokuBoardProps> = ({
     return styles;
   };
 
-  const getTextStyle = (row: number, col: number) => {
-    const styles = [cellStyles.cellText];
+  const getTextStyle = (row: number, col: number): TextStyle[] => {
+    const styles: TextStyle[] = [cellStyles.cellText];
 
     if (hasError(row, col)) {
       styles.push(cellStyles.errorText);

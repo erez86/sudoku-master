@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Alert, Modal } from 'react-native';
+import { StyleSheet, View, Alert, Modal, TouchableOpacity } from 'react-native';
 import { Typography } from '@/components/UI/Typography';
 import { Button } from '@/components/UI/Button';
+import { Icon } from '@/components/UI/Icon';
 import { router } from 'expo-router';
 import { useState } from 'react';
+import { useProfile } from '../contexts/ProfileContext';
 
 export default function HomeScreen() {
   const [difficultyModalVisible, setDifficultyModalVisible] = useState(false);
+  const { activeProfile, loading } = useProfile();
 
   const handleStartGame = () => {
     setDifficultyModalVisible(true);
@@ -32,8 +35,31 @@ export default function HomeScreen() {
     ]);
   };
 
+  const handleProfile = () => {
+    router.push('/profile');
+  };
+
   return (
     <View style={styles.container}>
+      {/* Avatar Button */}
+      <TouchableOpacity
+        style={styles.avatarButton}
+        onPress={handleProfile}
+        activeOpacity={0.7}
+      >
+        <View style={styles.avatar}>
+          <Icon
+            library="ionicons"
+            name="person"
+            size={24}
+            color="#fff"
+          />
+        </View>
+        <Typography variant="caption" style={styles.playerName}>
+          {loading ? 'Loading...' : activeProfile?.name || 'Sudoku Master'}
+        </Typography>
+      </TouchableOpacity>
+
       <Typography variant="title" style={styles.title}>Sudoku Master</Typography>
       <Typography variant="caption" style={styles.subtitle}>Challenge your mind with the ultimate puzzle game</Typography>
 
@@ -138,6 +164,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+  },
+  avatarButton: {
+    position: 'absolute',
+    top: 60,
+    left: 20,
+    zIndex: 10,
+    alignItems: 'center',
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#3498db',
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  playerName: {
+    color: '#2c3e50',
+    fontSize: 10,
+    marginTop: 4,
+    textAlign: 'center',
+    maxWidth: 80,
+  },
+  avatarEmoji: {
+    fontSize: 20,
+    color: '#fff',
   },
   title: {
     marginBottom: 10,
