@@ -495,6 +495,42 @@ export const updateActiveProfilePreferences = async (updatedPreferences: GamePre
   }
 };
 
+// Migrate stats to ensure all new fields exist
+const migrateStatsToLatestVersion = (stats: any): GameStats => {
+  return {
+    totalGamesCompleted: stats.totalGamesCompleted || 0,
+    totalGamesStarted: stats.totalGamesStarted || 0,
+    totalGamesForfeited: stats.totalGamesForfeited || 0,
+    bestTimes: {
+      easy: stats.bestTimes?.easy || null,
+      normal: stats.bestTimes?.normal || null,
+      hard: stats.bestTimes?.hard || null,
+    },
+    averageTimes: {
+      easy: stats.averageTimes?.easy || [],
+      normal: stats.averageTimes?.normal || [],
+      hard: stats.averageTimes?.hard || [],
+    },
+    totalPlayTime: stats.totalPlayTime || 0,
+    perfectGames: stats.perfectGames || 0,
+    totalMistakes: stats.totalMistakes || 0,
+    hintsUsed: stats.hintsUsed || 0,
+    completionsByDifficulty: {
+      easy: stats.completionsByDifficulty?.easy || 0,
+      normal: stats.completionsByDifficulty?.normal || 0,
+      hard: stats.completionsByDifficulty?.hard || 0,
+    },
+    autoFillUsed: stats.autoFillUsed || 0,
+    currentStreak: stats.currentStreak || 0,
+    bestStreak: stats.bestStreak || 0,
+    firstCompletions: {
+      easy: stats.firstCompletions?.easy || null,
+      normal: stats.firstCompletions?.normal || null,
+      hard: stats.firstCompletions?.hard || null,
+    },
+  };
+};
+
 // Enhanced Statistics Functions
 export const updateComprehensiveGameStats = async (gameData: {
   difficulty: 'easy' | 'normal' | 'hard';
@@ -506,7 +542,8 @@ export const updateComprehensiveGameStats = async (gameData: {
 }): Promise<void> => {
   try {
     const activeProfile = await getActiveProfile();
-    const stats = activeProfile.stats;
+    // Migrate stats to ensure all fields exist
+    const stats = migrateStatsToLatestVersion(activeProfile.stats);
 
     // Always update play time
     stats.totalPlayTime += gameData.timeInSeconds;
@@ -566,7 +603,7 @@ export const updateComprehensiveGameStats = async (gameData: {
 export const incrementGameForfeitedStats = async (timePlayedInSeconds: number): Promise<void> => {
   try {
     const activeProfile = await getActiveProfile();
-    const stats = activeProfile.stats;
+    const stats = migrateStatsToLatestVersion(activeProfile.stats);
 
     stats.totalGamesForfeited++;
     stats.totalPlayTime += timePlayedInSeconds;
@@ -581,7 +618,7 @@ export const incrementGameForfeitedStats = async (timePlayedInSeconds: number): 
 export const incrementHintUsedStats = async (): Promise<void> => {
   try {
     const activeProfile = await getActiveProfile();
-    const stats = activeProfile.stats;
+    const stats = migrateStatsToLatestVersion(activeProfile.stats);
 
     stats.hintsUsed++;
 
@@ -594,7 +631,7 @@ export const incrementHintUsedStats = async (): Promise<void> => {
 export const addMistakeToStats = async (): Promise<void> => {
   try {
     const activeProfile = await getActiveProfile();
-    const stats = activeProfile.stats;
+    const stats = migrateStatsToLatestVersion(activeProfile.stats);
 
     stats.totalMistakes++;
 
@@ -607,7 +644,7 @@ export const addMistakeToStats = async (): Promise<void> => {
 export const incrementAutoFillStats = async (): Promise<void> => {
   try {
     const activeProfile = await getActiveProfile();
-    const stats = activeProfile.stats;
+    const stats = migrateStatsToLatestVersion(activeProfile.stats);
 
     stats.autoFillUsed++;
 

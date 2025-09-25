@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import {
   getActiveProfile,
   loadProfileManager,
@@ -24,7 +24,7 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
   const [profileManager, setProfileManager] = useState<ProfileManager | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const refreshProfile = async () => {
+  const refreshProfile = useCallback(async () => {
     try {
       setLoading(true);
       const [profile, manager] = await Promise.all([
@@ -38,11 +38,11 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     refreshProfile();
-  }, []);
+  }, [refreshProfile]);
 
   const value: ProfileContextType = {
     activeProfile,
