@@ -72,7 +72,7 @@ export function SuccessModal({ visible, onClose, difficulty, time, mistakes }: S
             useNativeDriver: true,
           }),
           Animated.timing(piece.x, {
-            toValue: piece.x._value + (Math.random() - 0.5) * 200,
+            toValue: (piece.x as any)._value + (Math.random() - 0.5) * 200,
             duration: 3000 + Math.random() * 2000,
             useNativeDriver: true,
           }),
@@ -155,7 +155,7 @@ export function SuccessModal({ visible, onClose, difficulty, time, mistakes }: S
           <View style={styles.modalContent}>
             {/* Trophy Icon */}
             <View style={styles.trophyContainer}>
-              <Typography variant="display" style={styles.trophy}>🏆</Typography>
+              <Typography variant="title" style={styles.trophy}>🏆</Typography>
             </View>
 
             {/* Title */}

@@ -34,7 +34,8 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.erez86.sudokumaster"
+      "package": "com.erez86.sudokumaster",
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.png"
