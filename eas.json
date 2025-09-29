@@ -6,16 +6,27 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "node": "22.11.0",
+      "yarn": "1.22.22"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "node": "22.11.0",
+      "yarn": "1.22.22"
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "node": "22.11.0",
+      "yarn": "1.22.22",
+      "channel": "production"
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {
+        "track": "internal"
+      }
+    }
   }
 }

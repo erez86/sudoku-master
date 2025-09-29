@@ -3,11 +3,12 @@
     "name": "Sudoku Master",
     "slug": "sudoku-master",
     "owner": "erez86",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "scheme": "sudoku-master",
     "description": "A challenging and fun Sudoku game for all skill levels",
     "keywords": [
       "sudoku",
@@ -35,7 +36,7 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.erez86.sudokumaster",
-      "versionCode": 8
+      "versionCode": 9
     },
     "web": {
       "favicon": "./assets/favicon.png"

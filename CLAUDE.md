@@ -16,13 +16,16 @@ This is a React Native Sudoku game built with Expo, TypeScript, and EAS for depl
 ## Development Commands
 
 ```bash
+# Install dependencies
+yarn install
+
 # Start development server
-npm start
+yarn start
 
 # Start on specific platforms
-npm run android
-npm run ios
-npm run web
+yarn android
+yarn ios
+yarn web
 
 # Build for production
 eas build --platform all
@@ -57,6 +60,7 @@ src/
 
 - **App Name**: Sudoku Master
 - **Bundle ID**: sudoku-master
+- **URL Scheme**: sudoku-master://
 - **Orientation**: Portrait only
 - **New Architecture**: Enabled for React Native
 - **Platforms**: iOS (tablet support), Android (adaptive icons)
