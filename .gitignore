@@ -43,3 +43,4 @@ yarn-error.*
 # WebStorm
 .idea
 
+/sudoku-master-473618-d310dd774c3e.json

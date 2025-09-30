@@ -36,7 +36,7 @@
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.erez86.sudokumaster",
-      "versionCode": 9
+      "versionCode": 10
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -49,6 +49,12 @@
     "plugins": [
       "expo-font",
       "expo-router"
-    ]
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/84fb26d9-148e-4dc7-8bd3-1139a2c6c384"
+    }
   }
 }
